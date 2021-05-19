@@ -1,0 +1,9 @@
+com/wawra/mvpapp/data/database/daos/SampleDao_Impl.java
+ com.wawra.mvpapp.data.database.daos.SampleDao_Impl
+ com.wawra.mvpapp.data.database.daos.SampleDao_Impl$1
+ com.wawra.mvpapp.data.database.daos.SampleDao_Impl$2
+com/wawra/mvpapp/data/database/AppDatabase_Impl.java
+ com.wawra.mvpapp.data.database.AppDatabase_Impl
+ com.wawra.mvpapp.data.database.AppDatabase_Impl$1
+com/wawra/mvpapp/data/BuildConfig.java
+ com.wawra.mvpapp.data.BuildConfig
