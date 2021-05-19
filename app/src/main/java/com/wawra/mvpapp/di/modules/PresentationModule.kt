@@ -1,6 +1,7 @@
 package com.wawra.mvpapp.di.modules
 
 import com.wawra.mvpapp.domain.usecases.base.UseCaseFactory
+import com.wawra.mvpapp.presentation.postdetails.PostDetailsPresenter
 import com.wawra.mvpapp.presentation.posts.PostsPresenter
 import dagger.Module
 import dagger.Provides
@@ -9,4 +10,7 @@ import dagger.Provides
 class PresentationModule {
     @Provides
     fun providePostsPresenter(useCaseFactory: UseCaseFactory) = PostsPresenter(useCaseFactory)
+
+    @Provides
+    fun providePostDetailsPresenter() = PostDetailsPresenter()
 }

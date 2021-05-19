@@ -1,11 +1,12 @@
 package com.wawra.mvpapp.utils
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.wawra.mvpapp.R
 import com.wawra.mvpapp.ui.MainActivity
 
-fun AppCompatActivity.changeFragment(fragment: Fragment) {
+fun Activity.changeFragment(fragment: Fragment) {
     (this as? MainActivity)?.apply {
         supportFragmentManager
             .beginTransaction()
@@ -14,4 +15,12 @@ fun AppCompatActivity.changeFragment(fragment: Fragment) {
             .addToBackStack(null)
             .commit()
     }
+}
+
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.show() {
+    visibility = View.VISIBLE
 }

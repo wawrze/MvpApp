@@ -8,12 +8,18 @@ import android.widget.Toast
 import com.wawra.mvpapp.databinding.FragmentPostsBinding
 import com.wawra.mvpapp.presentation.posts.*
 import com.wawra.mvpapp.ui.base.BaseFragment
+import com.wawra.mvpapp.ui.base.FragmentProvider
 import com.wawra.mvpapp.ui.posts.adapter.PostsAdapter
 import com.wawra.mvpapp.ui.posts.adapter.PostsListener
+import com.wawra.mvpapp.utils.changeFragment
+import javax.inject.Inject
 
 typealias BaseMvpFragment = BaseFragment<PostsPresentationModel, PostsView, PostsPresenter>
 
 class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
+
+    @Inject
+    lateinit var fragmentProvider: FragmentProvider
 
     private var binding: FragmentPostsBinding? = null
 
@@ -47,11 +53,7 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
     }
 
     override fun showDetails(linkUrl: String) {
-        Toast.makeText(
-            requireContext(),
-            "SHOULD OPEN LINK: $linkUrl",
-            Toast.LENGTH_LONG
-        ).show()
+        activity?.changeFragment(fragmentProvider.providePostDetailsFragment(linkUrl))
     }
 
     override fun showLoading() {
