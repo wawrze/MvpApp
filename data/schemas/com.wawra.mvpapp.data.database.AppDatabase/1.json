@@ -2,28 +2,52 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2d1fb7d5302b6f185ca22edb4c5f50d8",
+    "identityHash": "97e6fef03c36f571bb727c2e869a8fd3",
     "entities": [
       {
-        "tableName": "sample",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "tableName": "post",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `orderId` INTEGER NOT NULL, `modificationDate` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `description` TEXT NOT NULL, `linkUrl` TEXT NOT NULL, PRIMARY KEY(`orderId`))",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orderId",
+            "columnName": "orderId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "modificationDate",
+            "columnName": "modificationDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "linkUrl",
+            "columnName": "linkUrl",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "orderId"
           ],
           "autoGenerate": false
         },
@@ -34,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d1fb7d5302b6f185ca22edb4c5f50d8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97e6fef03c36f571bb727c2e869a8fd3')"
     ]
   }
 }

@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        changeFragment(fragmentProvider.provideSampleFragment())
+        changeFragment(fragmentProvider.providePostsFragment())
     }
 }

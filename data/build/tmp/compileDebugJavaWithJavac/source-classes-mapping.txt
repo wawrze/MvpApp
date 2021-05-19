@@ -1,7 +1,10 @@
-com/wawra/mvpapp/data/database/daos/SampleDao_Impl.java
- com.wawra.mvpapp.data.database.daos.SampleDao_Impl
- com.wawra.mvpapp.data.database.daos.SampleDao_Impl$1
- com.wawra.mvpapp.data.database.daos.SampleDao_Impl$2
+com/wawra/mvpapp/data/database/daos/PostDao_Impl.java
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl$1
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl$2
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl$3
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl$4
+ com.wawra.mvpapp.data.database.daos.PostDao_Impl$5
 com/wawra/mvpapp/data/database/AppDatabase_Impl.java
  com.wawra.mvpapp.data.database.AppDatabase_Impl
  com.wawra.mvpapp.data.database.AppDatabase_Impl$1

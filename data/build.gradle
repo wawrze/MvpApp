@@ -12,6 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -25,10 +27,14 @@ android {
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
+
+        coreLibraryDesugaringEnabled true
     }
 
     dependencies {
         api project(":domain")
+
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
         // region Room
         api 'androidx.room:room-runtime:2.3.0'

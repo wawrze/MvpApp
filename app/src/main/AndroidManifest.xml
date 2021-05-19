@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wawra.mvpapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MvpApp"
         android:allowBackup="true"

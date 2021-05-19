@@ -14,8 +14,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
 import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
-import com.wawra.mvpapp.data.database.daos.SampleDao;
-import com.wawra.mvpapp.data.database.daos.SampleDao_Impl;
+import com.wawra.mvpapp.data.database.daos.PostDao;
+import com.wawra.mvpapp.data.database.daos.PostDao_Impl;
 import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
@@ -28,21 +28,21 @@ import java.util.Set;
 
 @SuppressWarnings({"unchecked", "deprecation"})
 public final class AppDatabase_Impl extends AppDatabase {
-  private volatile SampleDao _sampleDao;
+  private volatile PostDao _postDao;
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `sample` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `post` (`title` TEXT NOT NULL, `orderId` INTEGER NOT NULL, `modificationDate` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `description` TEXT NOT NULL, `linkUrl` TEXT NOT NULL, PRIMARY KEY(`orderId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d1fb7d5302b6f185ca22edb4c5f50d8')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '97e6fef03c36f571bb727c2e869a8fd3')");
       }
 
       @Override
       public void dropAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("DROP TABLE IF EXISTS `sample`");
+        _db.execSQL("DROP TABLE IF EXISTS `post`");
         if (mCallbacks != null) {
           for (int _i = 0, _size = mCallbacks.size(); _i < _size; _i++) {
             mCallbacks.get(_i).onDestructiveMigration(_db);
@@ -81,21 +81,25 @@ public final class AppDatabase_Impl extends AppDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsSample = new HashMap<String, TableInfo.Column>(2);
-        _columnsSample.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsSample.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        final HashSet<TableInfo.ForeignKey> _foreignKeysSample = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesSample = new HashSet<TableInfo.Index>(0);
-        final TableInfo _infoSample = new TableInfo("sample", _columnsSample, _foreignKeysSample, _indicesSample);
-        final TableInfo _existingSample = TableInfo.read(_db, "sample");
-        if (! _infoSample.equals(_existingSample)) {
-          return new RoomOpenHelper.ValidationResult(false, "sample(com.wawra.mvpapp.data.database.models.SampleModelEntity).\n"
-                  + " Expected:\n" + _infoSample + "\n"
-                  + " Found:\n" + _existingSample);
+        final HashMap<String, TableInfo.Column> _columnsPost = new HashMap<String, TableInfo.Column>(6);
+        _columnsPost.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPost.put("orderId", new TableInfo.Column("orderId", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPost.put("modificationDate", new TableInfo.Column("modificationDate", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPost.put("imageUrl", new TableInfo.Column("imageUrl", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPost.put("description", new TableInfo.Column("description", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPost.put("linkUrl", new TableInfo.Column("linkUrl", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysPost = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesPost = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoPost = new TableInfo("post", _columnsPost, _foreignKeysPost, _indicesPost);
+        final TableInfo _existingPost = TableInfo.read(_db, "post");
+        if (! _infoPost.equals(_existingPost)) {
+          return new RoomOpenHelper.ValidationResult(false, "post(com.wawra.mvpapp.data.database.models.PostEntity).\n"
+                  + " Expected:\n" + _infoPost + "\n"
+                  + " Found:\n" + _existingPost);
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "2d1fb7d5302b6f185ca22edb4c5f50d8", "ba4b56d877f759b1cd8b986dadff7bbd");
+    }, "97e6fef03c36f571bb727c2e869a8fd3", "3e80f9fc24f2b48a391f35cad26becb3");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -108,7 +112,7 @@ public final class AppDatabase_Impl extends AppDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "sample");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "post");
   }
 
   @Override
@@ -117,7 +121,7 @@ public final class AppDatabase_Impl extends AppDatabase {
     final SupportSQLiteDatabase _db = super.getOpenHelper().getWritableDatabase();
     try {
       super.beginTransaction();
-      _db.execSQL("DELETE FROM `sample`");
+      _db.execSQL("DELETE FROM `post`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -131,20 +135,20 @@ public final class AppDatabase_Impl extends AppDatabase {
   @Override
   protected Map<Class<?>, List<Class<?>>> getRequiredTypeConverters() {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
-    _typeConvertersMap.put(SampleDao.class, SampleDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(PostDao.class, PostDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
   @Override
-  public SampleDao sampleDao() {
-    if (_sampleDao != null) {
-      return _sampleDao;
+  public PostDao postDao() {
+    if (_postDao != null) {
+      return _postDao;
     } else {
       synchronized(this) {
-        if(_sampleDao == null) {
-          _sampleDao = new SampleDao_Impl(this);
+        if(_postDao == null) {
+          _postDao = new PostDao_Impl(this);
         }
-        return _sampleDao;
+        return _postDao;
       }
     }
   }

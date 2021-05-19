@@ -1,8 +1,8 @@
 package com.wawra.mvpapp.ui.base
 
-import com.wawra.mvpapp.ui.sample.SampleFragment
+import com.wawra.mvpapp.ui.posts.PostsFragment
 import javax.inject.Inject
 
 class FragmentProvider @Inject constructor() {
-    fun provideSampleFragment() = SampleFragment()
+    fun providePostsFragment() = PostsFragment()
 }

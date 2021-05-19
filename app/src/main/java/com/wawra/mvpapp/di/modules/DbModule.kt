@@ -3,6 +3,7 @@ package com.wawra.mvpapp.di.modules
 import android.content.Context
 import androidx.room.Room
 import com.wawra.mvpapp.data.database.AppDatabase
+import com.wawra.mvpapp.data.database.daos.PostDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -20,5 +21,5 @@ class DbModule {
 
     @Provides
     @Singleton
-    fun provideSimpleDao(appDatabase: AppDatabase) = appDatabase.sampleDao()
+    fun providePostDao(appDatabase: AppDatabase): PostDao = appDatabase.postDao()
 }
