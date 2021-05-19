@@ -1,8 +1,9 @@
 package com.wawra.mvpapp.presentation.posts
 
-import com.wawra.mvpapp.domain.models.Post
-
 interface PostsView {
-    fun showPosts(posts: List<Post>)
+    fun showPosts(posts: List<PostDto>)
     fun showError(throwable: Throwable)
+    fun showDetails(linkUrl: String)
+    fun showLoading()
+    fun hideLoading()
 }

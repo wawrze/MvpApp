@@ -14,5 +14,6 @@ class GetPostsUseCase(
 ) : SingleUseCase<List<Post>>(executionThread, postExecutionThread) {
 
     override fun createSingle(): Single<List<Post>> = postsLocalRepository.getPosts()
+        .flatMap { if (it.isEmpty()) refreshAndGetPostsUseCase.execute() else Single.just(it) }
         .onErrorResumeNext { refreshAndGetPostsUseCase.execute() }
 }

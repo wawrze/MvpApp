@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.wawra.mvpapp.databinding.FragmentPostsBinding
-import com.wawra.mvpapp.domain.models.Post
-import com.wawra.mvpapp.presentation.posts.PostsPresentationModel
-import com.wawra.mvpapp.presentation.posts.PostsPresenter
-import com.wawra.mvpapp.presentation.posts.PostsView
+import com.wawra.mvpapp.presentation.posts.*
 import com.wawra.mvpapp.ui.base.BaseFragment
+import com.wawra.mvpapp.ui.posts.adapter.PostsAdapter
+import com.wawra.mvpapp.ui.posts.adapter.PostsListener
 
 typealias BaseMvpFragment = BaseFragment<PostsPresentationModel, PostsView, PostsPresenter>
 
-class PostsFragment : PostsView, BaseMvpFragment() {
+class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
 
     private var binding: FragmentPostsBinding? = null
 
@@ -29,19 +28,42 @@ class PostsFragment : PostsView, BaseMvpFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.fragmentPostsText?.setOnClickListener { presenter.refreshPosts() }
+        binding?.fragmentPostsSwipeLayout?.setOnRefreshListener {
+            presenter.performAction(PostsViewInteraction.Refresh)
+        }
     }
 
-    override fun showPosts(posts: List<Post>) {
+    override fun showPosts(posts: List<PostDto>) {
+        binding?.fragmentPostsRecycler?.adapter = PostsAdapter(posts, this as PostsListener)
         Toast.makeText(
             requireContext(),
-            "SUCCESS, ${posts.size} POSTS DOWNLOADED AND SAVEDf",
+            "${posts.size} POSTS LOADED",
             Toast.LENGTH_LONG
         ).show()
     }
 
     override fun showError(throwable: Throwable) {
         Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
+    }
+
+    override fun showDetails(linkUrl: String) {
+        Toast.makeText(
+            requireContext(),
+            "SHOULD OPEN LINK: $linkUrl",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    override fun showLoading() {
+        binding?.fragmentPostsSwipeLayout?.isRefreshing = true
+    }
+
+    override fun hideLoading() {
+        binding?.fragmentPostsSwipeLayout?.isRefreshing = false
+    }
+
+    override fun showDetails(postId: Long) {
+        presenter.performAction(PostsViewInteraction.ShowDetails(postId))
     }
 
     override fun createPresentationModel() = PostsPresentationModel()
