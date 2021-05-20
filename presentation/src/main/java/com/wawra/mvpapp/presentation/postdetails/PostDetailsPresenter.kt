@@ -11,7 +11,7 @@ class PostDetailsPresenter @Inject constructor() : BaseMvpPresenter() {
         super.start(view, presentationModel)
         if (!presentationModel.linkLoaded) {
             view.showLoading()
-            presentationModel.activeUrl?.let { view.loadUrl(it) }
+            presentationModel.activeUrl?.let { view.loadUrl(it.normalizeUrl()) }
         }
     }
 
