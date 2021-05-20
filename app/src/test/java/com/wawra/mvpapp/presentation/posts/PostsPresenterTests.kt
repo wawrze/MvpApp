@@ -1,6 +1,5 @@
 package com.wawra.mvpapp.presentation.posts
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import com.nhaarman.mockitokotlin2.*
 import com.wawra.mvpapp.domain.FORMATTER
 import com.wawra.mvpapp.domain.models.Post
@@ -64,8 +63,14 @@ class PostsPresenterTests {
         // then
         assert(presentationModel.state is PresenterState.Content)
         assertEquals(posts.size, (presentationModel.state as PresenterState.Content).posts.size)
-        assertEquals(posts[0].orderId, (presentationModel.state as PresenterState.Content).posts[0].orderId)
-        assertEquals(posts[1].orderId, (presentationModel.state as PresenterState.Content).posts[1].orderId)
+        assertEquals(
+            posts[0].orderId,
+            (presentationModel.state as PresenterState.Content).posts[0].orderId
+        )
+        assertEquals(
+            posts[1].orderId,
+            (presentationModel.state as PresenterState.Content).posts[1].orderId
+        )
         verify(view).showLoading()
         verify(view).hideErrorContent()
         verify(view).hideEmptyContent()
@@ -126,8 +131,14 @@ class PostsPresenterTests {
         // then
         assert(presentationModel.state is PresenterState.Content)
         assertEquals(posts.size, (presentationModel.state as PresenterState.Content).posts.size)
-        assertEquals(posts[0].orderId, (presentationModel.state as PresenterState.Content).posts[0].orderId)
-        assertEquals(posts[1].orderId, (presentationModel.state as PresenterState.Content).posts[1].orderId)
+        assertEquals(
+            posts[0].orderId,
+            (presentationModel.state as PresenterState.Content).posts[0].orderId
+        )
+        assertEquals(
+            posts[1].orderId,
+            (presentationModel.state as PresenterState.Content).posts[1].orderId
+        )
         verify(view).showLoading()
         verify(view).hideErrorContent()
         verify(view).hideEmptyContent()
