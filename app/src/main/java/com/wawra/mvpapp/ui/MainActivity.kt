@@ -1,6 +1,7 @@
 package com.wawra.mvpapp.ui
 
 import android.os.Bundle
+import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import com.wawra.mvpapp.databinding.ActivityMainBinding
 import com.wawra.mvpapp.ui.base.FragmentProvider
@@ -31,9 +32,20 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when {
             backPressedOverride != null -> backPressedOverride?.invoke()
-            binding?.activityMainDetailsFragment?.isVisible() == true ->
-                binding?.activityMainDetailsFragment?.gone()
+            binding?.activityMainDetailsFragment?.isVisible() == true -> hideDetailsFragment()
             else -> super.onBackPressed()
         }
+    }
+
+    private fun hideDetailsFragment() {
+        binding?.activityMainDetailsFragment?.gone()
+        val animate = TranslateAnimation(
+            0f,
+            -(binding?.activityMainDetailsFragment?.width?.toFloat() ?: 0f),
+            0f,
+            0f
+        )
+        animate.duration = 500
+        binding?.activityMainDetailsFragment?.startAnimation(animate)
     }
 }

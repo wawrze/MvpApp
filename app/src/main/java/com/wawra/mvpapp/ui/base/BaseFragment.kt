@@ -36,6 +36,16 @@ abstract class BaseFragment<M : Serializable, V, P : Presenter<M, V>> : Fragment
         mvpDelegate.start(this as V)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mvpDelegate.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mvpDelegate.pause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mvpDelegate.destroy()

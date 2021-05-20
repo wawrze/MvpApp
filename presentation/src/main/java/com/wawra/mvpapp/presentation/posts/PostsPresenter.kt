@@ -13,7 +13,11 @@ class PostsPresenter @Inject constructor(
 
     override fun start(view: PostsView, presentationModel: PostsPresentationModel) {
         super.start(view, presentationModel)
-        presentationModel.posts?.let { showPosts() } ?: getPosts()
+        presentationModel.posts ?: getPosts()
+    }
+
+    override fun resume() {
+        presentationModel.posts?.let { showPosts() }
     }
 
     fun performAction(interaction: PostsViewInteraction) {
@@ -33,6 +37,7 @@ class PostsPresenter @Inject constructor(
                     showPosts()
                 },
                 {
+                    view?.hideLoading()
                     view?.showError(it)
                 }
             )
@@ -48,6 +53,7 @@ class PostsPresenter @Inject constructor(
                     showPosts()
                 },
                 {
+                    view?.hideLoading()
                     view?.showError(it)
                 }
             )

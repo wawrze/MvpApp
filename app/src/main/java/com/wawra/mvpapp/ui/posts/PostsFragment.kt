@@ -41,11 +41,6 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
 
     override fun showPosts(posts: List<PostDto>) {
         binding?.fragmentPostsRecycler?.adapter = PostsAdapter(posts, this as PostsListener)
-        Toast.makeText(
-            requireContext(),
-            "${posts.size} POSTS LOADED",
-            Toast.LENGTH_LONG
-        ).show()
     }
 
     override fun showError(throwable: Throwable) {

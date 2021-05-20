@@ -29,6 +29,14 @@ abstract class MvpAndroidLifecycleDelegate<M : Any, V, out P : Presenter<M, V>>(
         presenter.stop()
     }
 
+    fun resume() {
+        presenter.resume()
+    }
+
+    fun pause() {
+        presenter.pause()
+    }
+
     fun destroy() {
         presenter.destroy()
     }
