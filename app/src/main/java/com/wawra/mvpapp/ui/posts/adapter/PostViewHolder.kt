@@ -2,6 +2,7 @@ package com.wawra.mvpapp.ui.posts.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.squareup.picasso.Picasso
 import com.wawra.mvpapp.R
 import com.wawra.mvpapp.databinding.ItemPostBinding
 import com.wawra.mvpapp.presentation.posts.PostDto
@@ -18,8 +19,15 @@ class PostViewHolder(
             itemPostTitle.text = post.title
             itemPostDescription.text = post.description
             itemPostDate.text = post.date
-            itemPostImage.setImageResource(R.drawable.image_placeholder) // TODO: load image (mw 19.05.2021)
+            loadImage(post.imageUrl)
             root.setOnClickListener { listener?.showDetails(post.id) }
         }
+    }
+
+    private fun loadImage(imageUrl: String) {
+        Picasso.get().load(imageUrl)
+            .placeholder(R.drawable.image_placeholder)
+            .error(R.drawable.image_placeholder)
+            .into(binding.itemPostImage)
     }
 }

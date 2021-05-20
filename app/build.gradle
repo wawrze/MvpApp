@@ -53,6 +53,8 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     // endregion base
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // region modules
     implementation project(":data")
     implementation project(":presentation")
