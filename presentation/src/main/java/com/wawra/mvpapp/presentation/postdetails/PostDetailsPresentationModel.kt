@@ -4,5 +4,8 @@ import java.io.Serializable
 
 data class PostDetailsPresentationModel(
     val linkUrl: String,
-    var linkLoaded: Boolean = false
+    var startUrl: String? = null,
+    var linkLoaded: Boolean = false,
+    var previousUrl: String? = null,
+    var activeUrl: String? = linkUrl
 ) : Serializable

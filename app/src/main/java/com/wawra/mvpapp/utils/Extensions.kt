@@ -8,12 +8,16 @@ import com.wawra.mvpapp.ui.MainActivity
 
 fun Activity.changeFragment(fragment: Fragment) {
     (this as? MainActivity)?.apply {
-        supportFragmentManager
-            .beginTransaction()
-            .setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .replace(R.id.activity_main_fragment, fragment, null)
-            .addToBackStack(null)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.activity_main_details_fragment, fragment, null)
             .commit()
+        binding?.activityMainDetailsFragment?.show()
+    }
+}
+
+fun Activity.overrideOnBackPressed(override: (() -> Unit)?) {
+    (this as? MainActivity)?.apply {
+        backPressedOverride = override
     }
 }
 
@@ -24,3 +28,5 @@ fun View.gone() {
 fun View.show() {
     visibility = View.VISIBLE
 }
+
+fun View.isVisible() = visibility == View.VISIBLE
