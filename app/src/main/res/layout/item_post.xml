@@ -30,7 +30,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/item_post_image"
-            android:background="@color/colorSecondary"
+            android:background="@color/imageBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/image_placeholder" />

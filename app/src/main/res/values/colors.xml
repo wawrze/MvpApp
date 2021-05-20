@@ -5,4 +5,5 @@
     <color name="colorSecondary">#8FC1E3</color>
     <color name="colorSecondaryVariant">#5085A5</color>
     <color name="colorOnSecondary">#F7F9FB</color>
+    <color name="imageBackground">#F7F9FB</color>
 </resources>
