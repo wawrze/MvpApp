@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#667864</color>
-    <color name="colorPrimaryVariant">#31708E</color>
+    <color name="colorPrimaryVariant">#667864</color>
     <color name="colorSecondary">#8FC1E3</color>
     <color name="colorSecondaryVariant">#5085A5</color>
     <color name="colorOnSecondary">#F7F9FB</color>
     <color name="imageBackground">#F7F9FB</color>
+    <color name="mainTextColor">#31708E</color>
 </resources>

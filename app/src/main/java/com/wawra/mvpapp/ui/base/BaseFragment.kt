@@ -13,6 +13,9 @@ abstract class BaseFragment<M : Serializable, V, P : Presenter<M, V>> : Fragment
     @Inject
     protected lateinit var presenter: P
 
+    protected var dialogProvider: DialogProvider? = null
+        private set
+
     private val mvpDelegate: MvpAndroidLifecycleDelegate<M, V, P> = object :
         MvpAndroidLifecycleDelegate<M, V, P>() {
         override fun createPresenter(): P = presenter
@@ -28,6 +31,7 @@ abstract class BaseFragment<M : Serializable, V, P : Presenter<M, V>> : Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mvpDelegate.createElements(savedInstanceState)
+        dialogProvider = context?.let { DialogProvider(it) }
     }
 
     override fun onStart() {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.wawra.mvpapp.R
@@ -89,8 +88,7 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
     }
 
     override fun showErrorMessage() {
-        // TODO
-        Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
+        dialogProvider?.showError(R.string.loading_posts_error)
     }
 
     override fun showDetails(linkUrl: String, postIndex: Int?) {

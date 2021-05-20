@@ -7,7 +7,7 @@ interface PostsView {
     fun hideErrorContent()
     fun showEmptyContent()
     fun hideEmptyContent()
-    fun showErrorMessage(message: String)
+    fun showErrorMessage()
     fun showDetails(linkUrl: String, postIndex: Int?)
     fun showLoading()
     fun hideLoading()
