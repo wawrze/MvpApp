@@ -15,6 +15,8 @@ import com.wawra.mvpapp.ui.base.FragmentProvider
 import com.wawra.mvpapp.ui.posts.adapter.PostsAdapter
 import com.wawra.mvpapp.ui.posts.adapter.PostsListener
 import com.wawra.mvpapp.utils.changeFragment
+import com.wawra.mvpapp.utils.gone
+import com.wawra.mvpapp.utils.show
 import javax.inject.Inject
 
 
@@ -39,6 +41,7 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.fragmentPostsSwipeLayout?.setOnRefreshListener {
+            binding?.fragmentPostsSwipeLayout?.isRefreshing = false
             presenter.performAction(PostsViewInteraction.Refresh)
         }
         setupRecyclerDecorator()
@@ -68,11 +71,11 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
     }
 
     override fun showLoading() {
-        binding?.fragmentPostsSwipeLayout?.isRefreshing = true
+        binding?.fragmentPostsProgressBar?.show()
     }
 
     override fun hideLoading() {
-        binding?.fragmentPostsSwipeLayout?.isRefreshing = false
+        binding?.fragmentPostsProgressBar?.gone()
     }
 
     override fun showDetails(postId: Long) {

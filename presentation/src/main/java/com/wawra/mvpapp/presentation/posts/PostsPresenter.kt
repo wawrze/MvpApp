@@ -34,6 +34,7 @@ class PostsPresenter @Inject constructor(
     }
 
     private fun refreshPosts() {
+        view?.showLoading()
         useCaseFactory.provideRefreshAndGetPostsUseCase().execute()
             .subscribe(
                 {
