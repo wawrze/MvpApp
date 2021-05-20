@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.wawra.mvpapp.R
 import com.wawra.mvpapp.databinding.FragmentPostsBinding
 import com.wawra.mvpapp.presentation.posts.*
 import com.wawra.mvpapp.ui.base.BaseFragment
@@ -13,6 +16,7 @@ import com.wawra.mvpapp.ui.posts.adapter.PostsAdapter
 import com.wawra.mvpapp.ui.posts.adapter.PostsListener
 import com.wawra.mvpapp.utils.changeFragment
 import javax.inject.Inject
+
 
 typealias BaseMvpFragment = BaseFragment<PostsPresentationModel, PostsView, PostsPresenter>
 
@@ -36,6 +40,17 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.fragmentPostsSwipeLayout?.setOnRefreshListener {
             presenter.performAction(PostsViewInteraction.Refresh)
+        }
+        setupRecyclerDecorator()
+    }
+
+    private fun setupRecyclerDecorator() {
+        context?.let { context ->
+            val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            ContextCompat.getDrawable(context, R.drawable.divider)?.let {
+                itemDecorator.setDrawable(it)
+            }
+            binding?.fragmentPostsRecycler?.addItemDecoration(itemDecorator)
         }
     }
 
