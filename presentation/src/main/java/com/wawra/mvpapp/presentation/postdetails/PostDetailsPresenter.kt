@@ -29,12 +29,12 @@ class PostDetailsPresenter @Inject constructor() : BaseMvpPresenter() {
     }
 
     private fun setActiveUrl(url: String?) {
-        when {
-            presentationModel.startUrl == null -> presentationModel.startUrl = url
-            url == presentationModel.startUrl -> presentationModel.previousUrl = null
+        when (presentationModel.startUrl) {
+            null -> presentationModel.startUrl = url?.normalizeUrl()
+            url?.normalizeUrl() -> presentationModel.previousUrl = null
             else -> presentationModel.previousUrl = presentationModel.activeUrl
         }
-        presentationModel.activeUrl = url
+        presentationModel.activeUrl = url?.normalizeUrl()
     }
 
     private fun backPressed() {
@@ -43,4 +43,6 @@ class PostDetailsPresenter @Inject constructor() : BaseMvpPresenter() {
             view?.loadUrl(it)
         } ?: view?.close()
     }
+
+    private fun String.normalizeUrl() = this.replace("http://", "https://")
 }

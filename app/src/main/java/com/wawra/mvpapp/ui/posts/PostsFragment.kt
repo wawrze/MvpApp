@@ -66,8 +66,9 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
     }
 
     override fun showDetails(linkUrl: String, postIndex: Int?) {
-        activity?.changeFragment(fragmentProvider.providePostDetailsFragment(linkUrl))
-        postIndex?.let { binding?.fragmentPostsRecycler?.smoothScrollToPosition(it) }
+        activity?.changeFragment(fragmentProvider.providePostDetailsFragment(linkUrl)) {
+            postIndex?.let { binding?.fragmentPostsRecycler?.smoothScrollToPosition(it) }
+        }
     }
 
     override fun showLoading() {

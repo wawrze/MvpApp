@@ -8,10 +8,11 @@ import com.wawra.mvpapp.R
 import com.wawra.mvpapp.ui.MainActivity
 
 
-fun Activity.changeFragment(fragment: Fragment) {
+fun Activity.changeFragment(fragment: Fragment, onFragmentLoaded: (() -> Unit)?) {
     (this as? MainActivity)?.apply {
         supportFragmentManager.beginTransaction()
             .replace(R.id.activity_main_details_fragment, fragment, null)
+            .runOnCommit { onFragmentLoaded?.invoke() }
             .commit()
         binding?.activityMainDetailsFragment?.show()
         val animateIn = AnimationUtils.loadAnimation(this, R.anim.slide_in_animation)
