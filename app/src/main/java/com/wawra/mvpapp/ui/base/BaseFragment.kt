@@ -56,6 +56,11 @@ abstract class BaseFragment<M : Serializable, V, P : Presenter<M, V>> : Fragment
         mvpDelegate.saveState(outState)
     }
 
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        mvpDelegate.createElements(savedInstanceState)
+    }
+
     override fun onStop() {
         super.onStop()
         mvpDelegate.stop()

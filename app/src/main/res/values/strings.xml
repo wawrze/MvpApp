@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MVPapp</string>
+
+    <string name="error_content">Some error occurred, try again later</string>
+    <string name="empty_content">There is no posts to show</string>
+    <string name="error_title">Error</string>
+    <string name="loading_posts_error">There was an error on loading posts</string>
 </resources>

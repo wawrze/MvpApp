@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MVPapp</string>
+
+    <string name="error_content">Wystąpił błąd, spróbuj ponownie później</string>
+    <string name="empty_content">Brak postów do wyświetlenia</string>
+    <string name="error_title">Błąd</string>
+    <string name="loading_posts_error">Wystąpił błąd podczas pobierania postów</string>
+</resources>

@@ -1,7 +1,6 @@
 package com.wawra.mvpapp.ui.base
 
 import android.os.Bundle
-import android.os.Parcelable
 import java.io.Serializable
 
 class PresentationModelSerializer<M> {
@@ -32,10 +31,6 @@ class PresentationModelSerializer<M> {
         presentationModel: M
     ) {
         when (presentationModel) {
-            is Parcelable -> outState.putParcelable(
-                presentationModelKey,
-                presentationModel as Parcelable
-            )
             is Serializable -> outState.putSerializable(
                 presentationModelKey,
                 presentationModel as Serializable

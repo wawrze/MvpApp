@@ -40,8 +40,8 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.fragmentPostsSwipeLayout?.setOnRefreshListener {
-            binding?.fragmentPostsSwipeLayout?.isRefreshing = false
+        binding?.root?.setOnRefreshListener {
+            binding?.root?.isRefreshing = false
             presenter.performAction(PostsViewInteraction.Refresh)
         }
         setupRecyclerDecorator()
@@ -59,9 +59,37 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
 
     override fun showPosts(posts: List<PostDto>) {
         binding?.fragmentPostsRecycler?.adapter = PostsAdapter(posts, this as PostsListener)
+        binding?.fragmentPostsRecycler?.show()
     }
 
-    override fun showError(throwable: Throwable) {
+    override fun hidePostList() {
+        binding?.fragmentPostsRecycler?.gone()
+    }
+
+    override fun showErrorContent() {
+        binding?.fragmentPostsErrorView?.show()
+        binding?.fragmentPostsErrorView?.setOnClickListener {
+            presenter.performAction(PostsViewInteraction.Refresh)
+        }
+    }
+
+    override fun hideErrorContent() {
+        binding?.fragmentPostsErrorView?.gone()
+    }
+
+    override fun showEmptyContent() {
+        binding?.fragmentPostsEmptyView?.show()
+        binding?.fragmentPostsEmptyView?.setOnClickListener {
+            presenter.performAction(PostsViewInteraction.Refresh)
+        }
+    }
+
+    override fun hideEmptyContent() {
+        binding?.fragmentPostsEmptyView?.gone()
+    }
+
+    override fun showErrorMessage() {
+        // TODO
         Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
     }
 
