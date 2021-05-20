@@ -8,10 +8,10 @@ import io.reactivex.internal.schedulers.ExecutorScheduler
 import io.reactivex.plugins.RxJavaPlugins
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.mockito.junit.MockitoJUnitRunner
 import java.util.concurrent.TimeUnit
 
-@RunWith(JUnit4::class)
+@RunWith(MockitoJUnitRunner::class)
 abstract class BaseTests {
 
     init {

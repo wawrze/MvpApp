@@ -2,6 +2,7 @@ package com.wawra.mvpapp.domain.usecases
 
 import com.nhaarman.mockitokotlin2.*
 import com.wawra.mvpapp.BaseTests
+import com.wawra.mvpapp.TestException
 import com.wawra.mvpapp.domain.models.Post
 import com.wawra.mvpapp.domain.repositories.PostsLocalRepository
 import com.wawra.mvpapp.domain.repositories.PostsNetworkRepository
@@ -169,6 +170,4 @@ class RefreshAndGetPostsUseCaseTests : BaseTests() {
         assertNull(result)
         assert(error?.cause is TestException)
     }
-
-    internal class TestException : Exception()
 }
