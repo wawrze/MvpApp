@@ -23,9 +23,13 @@ class PostsPresenter @Inject constructor(
     fun performAction(interaction: PostsViewInteraction) {
         when (interaction) {
             is PostsViewInteraction.Refresh -> refreshPosts()
-            is PostsViewInteraction.ShowDetails -> presentationModel.posts?.firstOrNull {
-                it.orderId == interaction.id
-            }?.let { view?.showDetails(it.linkUrl) }
+            is PostsViewInteraction.ShowDetails -> showPostDetails(interaction.id)
+        }
+    }
+
+    private fun showPostDetails(postId: Long) {
+        presentationModel.posts?.firstOrNull { it.orderId == postId }?.let {
+            view?.showDetails(it.linkUrl, presentationModel.posts?.indexOf(it))
         }
     }
 

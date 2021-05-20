@@ -1,8 +1,9 @@
 package com.wawra.mvpapp.ui
 
 import android.os.Bundle
-import android.view.animation.TranslateAnimation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import com.wawra.mvpapp.R
 import com.wawra.mvpapp.databinding.ActivityMainBinding
 import com.wawra.mvpapp.ui.base.FragmentProvider
 import com.wawra.mvpapp.utils.gone
@@ -39,13 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideDetailsFragment() {
         binding?.activityMainDetailsFragment?.gone()
-        val animate = TranslateAnimation(
-            0f,
-            -(binding?.activityMainDetailsFragment?.width?.toFloat() ?: 0f),
-            0f,
-            0f
-        )
-        animate.duration = 500
+        val animate = AnimationUtils.loadAnimation(this, R.anim.slide_out_animation)
+        animate.fillAfter = false
         binding?.activityMainDetailsFragment?.startAnimation(animate)
     }
 }

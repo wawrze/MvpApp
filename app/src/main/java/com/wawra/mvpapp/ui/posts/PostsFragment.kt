@@ -62,8 +62,9 @@ class PostsFragment : PostsView, PostsListener, BaseMvpFragment() {
         Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_LONG).show()
     }
 
-    override fun showDetails(linkUrl: String) {
+    override fun showDetails(linkUrl: String, postIndex: Int?) {
         activity?.changeFragment(fragmentProvider.providePostDetailsFragment(linkUrl))
+        postIndex?.let { binding?.fragmentPostsRecycler?.smoothScrollToPosition(it) }
     }
 
     override fun showLoading() {
